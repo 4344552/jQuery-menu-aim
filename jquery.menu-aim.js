@@ -312,7 +312,7 @@
 
             if ($(activeRow).hasClass("with-submenu-items")) {
                 isMoveToSubmenu = decreasingSlope < prevDecreasingSlope &&
-                    increasingSlope > prevIncreasingSlope;
+					Math.abs(increasingSlope) > Math.abs(prevIncreasingSlope);
             } else {
                 isMoveToSubmenu = false;
             }
