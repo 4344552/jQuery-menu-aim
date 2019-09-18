@@ -137,6 +137,7 @@
                                     // Не перешел в подменю, а остался вне блока меню - скрываем.
                                     if ($menu.attr('id') === undefined) {
                                         // Поменю 2-го и более уровней.
+										$(document).find(".dropping").removeClass("dropping");
                                         $(document).find(".dropping-right").removeClass("dropping-right");
                                         $(document).find(".dropping-left").removeClass("dropping-left");
                                         $(document).find(".dropping-bottom").removeClass("dropping-bottom");
