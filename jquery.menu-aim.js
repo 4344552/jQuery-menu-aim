@@ -96,6 +96,7 @@
                 exit: $.noop,
                 activate: $.noop,
                 deactivate: $.noop,
+				deactivateAllAfterTimeout: $.noop,
                 exitMenu: $.noop,
                 exitDelay: 0
             }, opts);
@@ -131,20 +132,8 @@
                         activationDelay();
                         if (activeRow && !isMoveToSubmenu) {
                             options.deactivate(activeRow);
-                        } else {
-                            window.setTimeout(function() {
-                                if (!activeRow) {
-                                    // Не перешел в подменю, а остался вне блока меню - скрываем.
-                                    if ($menu.attr('id') === undefined) {
-                                        // Поменю 2-го и более уровней.
-                                        $(document).find(".dropping-right").removeClass("dropping-right");
-                                        $(document).find(".dropping-left").removeClass("dropping-left");
-                                        $(document).find(".dropping-bottom").removeClass("dropping-bottom");
-                                        $(document).find(".hovered").removeClass("hovered");
-                                        isMoveToSubmenu = false;
-                                    }
-                                }
-                            }, 500);
+                        } else if (isMoveToSubmenu) {
+							options.deactivateAllAfterTimeout($menu);
                         }
                         activeRow = null;
                     }
